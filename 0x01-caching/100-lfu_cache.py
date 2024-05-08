@@ -2,7 +2,7 @@
 ''' LFU Caching
 '''
 from base_caching import BaseCaching
-from collections import defaultdict
+from collections import Counter, OrderedDict
 
 
 class LFUCache(BaseCaching):
@@ -12,7 +12,8 @@ class LFUCache(BaseCaching):
         ''' Constructor
         '''
         super().__init__()
-        self.lft = defaultdict(int)
+        self.lfu = Counter()
+        self.order = OrderedDict()
 
     def put(self, key, item):
         ''' Add an item in the cache
@@ -21,23 +22,22 @@ class LFUCache(BaseCaching):
             return None
 
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            min_frq = min(self.lft.values())
-            discard = [k for k, v in self.lft.items() if v == min_frq]
-            if len(discard) > 1:
-                lru_item = min(discard, key=lambda x: self.cache_data[x])
-                discard.remove(lru_item)
-            for k in discard:
-                del self.cache_data[k]
-                del self.lft[k]
-                print('DISCARD:', k)
+            discard = min(
+                self.order, key=lambda k: (self.lfu[k], self.order[k]))
+            del self.cache_data[discard]
+            del self.lfu[discard]
+            del self.order[discard]
+            print('DISCARD:', discard)
 
         self.cache_data[key] = item
-        self.lft[key] += 1
+        self.lfu[key] += 1
+        self.order[key] = len(self.order)
 
     def get(self, key):
         ''' Get an item by key
         '''
         if key is None or key not in self.cache_data:
             return None
-        self.lft[key] += 1
+        self.lfu[key] += 1
+        self.order.move_to_end(key)
         return self.cache_data[key]
