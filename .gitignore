@@ -1,3 +1,6 @@
 # ignore
 __pycache__/
 *.py[cod]
+
+# ignore venv
+env/
