@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-15 01:16+0100\n"
-"PO-Revision-Date: 2024-05-15 01:24+0100\n"
+"POT-Creation-Date: 2024-05-15 03:02+0100\n"
+"PO-Revision-Date: 2024-05-15 03:03+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -278,11 +278,11 @@ msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/3-index.html:5
+#: templates/3-index.html:5 templates/4-index.html:5 templates/5-index.html:5
 msgid "home_title"
 msgstr "Bienvenue chez Holberton"
 
-#: templates/3-index.html:8
+#: templates/3-index.html:8 templates/4-index.html:8 templates/5-index.html:8
 msgid "home_header"
 msgstr "Bonjour monde!"
 
