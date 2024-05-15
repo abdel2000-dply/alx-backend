@@ -57,7 +57,7 @@ def get_locale():
 def index():
     '''Main route
     '''
-    return render_template('4-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == "__main__":
