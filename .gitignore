@@ -4,3 +4,9 @@ __pycache__/
 
 # ignore venv
 env/
+
+# ignore redis-6.0.10
+**/redis-6.0.10/
+
+# ignore node_modules
+**/node_modules/
