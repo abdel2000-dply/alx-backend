@@ -1,6 +1,8 @@
 import redis from 'redis';
+import { promisify } from 'util';
 
 const client = redis.createClient();
+const getAsync = promisify(client.get).bind(client);
 
 client.on('connect', () => {
   console.log('Redis client connected to the server');
@@ -15,7 +17,7 @@ function setNewSchool(schoolName, value) {
 }
 
 function displaySchoolValue(schoolName) {
-  client.get(schoolName, (err, reply) => {
+  getAsync(schoolName).then((reply) => {
     console.log(reply);
   });
 }
