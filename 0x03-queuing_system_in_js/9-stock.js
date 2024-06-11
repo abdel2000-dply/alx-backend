@@ -17,11 +17,7 @@ const listProducts = [
 ];
 
 function getItemById(id) {
-  listProducts.forEach((product) => {
-    if (product.id === id) {
-      return product;
-    }
-  });
+  return listProducts.find((product) => product.id === id);
 }
 
 async function reserveStockById(itemId, stock) {
